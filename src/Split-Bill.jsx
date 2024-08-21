@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const SplitBill = ({ Selected, SETSELECTED }) => {
+const SplitBill = ({ Selected, SETSELECTED, Friends, SetNewFriendArray }) => {
   const [billValue, setBillvalue] = useState(0);
   const [myExpense, setMyExpense] = useState(0);
   const [whoPaid, setWhoPaid] = useState("You");
@@ -14,7 +14,8 @@ const SplitBill = ({ Selected, SETSELECTED }) => {
   };
 
   const handleSplitClose = () => {
-    SETSELECTED(null);
+    SETSELECTED();
+    console.log();
   };
 
   const handleWhoPaid = (e) => {
@@ -22,25 +23,44 @@ const SplitBill = ({ Selected, SETSELECTED }) => {
   };
 
   const handleSplitBill = () => {
+    parseInt(billValue);
+    parseInt(myExpense);
+    let totalBill = parseInt(billValue);
+    let MyExpense = parseInt(myExpense);
+    let prevBalance = Selected.balance;
+    let temp = 0;
     if (whoPaid === "You") {
-      // console.log(billValue + 2);
-      // console.log(myExpense + 2);
-      // console.log(Selected.balance + 2);
-      parseInt(billValue);
-      parseInt(myExpense);
-      console.log(billValue + 2);
-      console.log(myExpense + 2);
-      console.log(Selected.balance + 2);
+      temp = prevBalance + totalBill - MyExpense;
+      console.log(temp);
+      //Selected.balance = temp;
+      SETSELECTED((t) => {
+        //return { name: "murtaza", balance: 5, Imag: "./logo192.png" };
+        return { ...t, balance: temp };
+      });
+      // console.log(Selected);
+    } else {
+      temp = prevBalance - totalBill + (totalBill - MyExpense);
+      console.log(temp);
+      SETSELECTED((t) => {
+        return { ...t, balance: temp };
+      });
+      // console.log(Selected);
     }
+
+    const newarr = Friends.map((fr) => {
+      if (fr.name === Selected.name) {
+        console.log("check");
+        return { ...fr, balance: temp };
+      } else {
+        return fr;
+      }
+    });
+    SetNewFriendArray(newarr);
   };
-  // const handleSplitBill = () => {};
-  // const handleOtherPersonExpense = () => {
-  //   let temp = billValue - myExpense;
-  //   setOtherPersonExpense(temp);
-  // };
+  console.log(Selected);
   return (
     <>
-      {Selected === null ? (
+      {!Selected ? (
         ""
       ) : (
         <div>
@@ -64,7 +84,6 @@ const SplitBill = ({ Selected, SETSELECTED }) => {
                 <option value={"You"}>You</option>
                 <option value={Selected.name}>{Selected.name}</option>
               </select>
-              <p>{whoPaid}</p>
             </div>
             <button onClick={() => handleSplitBill()}>SplitBill</button>
           </div>

@@ -71,6 +71,9 @@
 .negative {
   color: red;
 }
+.even {
+  color: rgb(172, 168, 168);
+}
 .splitInput p {
   margin: 2px;
 }

@@ -9,12 +9,19 @@ const App = () => {
   const handleAddFriends = (friend) => {
     setFriends((t) => [...t, friend]);
   };
+  const handleNewFriendArray = (friends) => {
+    setFriends(friends);
+  };
   return (
     <>
       <div className="fullContainer">
         <div className="division">
           <div className="friendList_addFriend">
-            <FriendList Friends={friends} SetFriend={handleAddFriends} />
+            <FriendList
+              Friends={friends}
+              SetFriend={handleAddFriends}
+              SetNewFriendArray={handleNewFriendArray}
+            />
           </div>
           {/* <div className="splitbill">
             <SplitBill />

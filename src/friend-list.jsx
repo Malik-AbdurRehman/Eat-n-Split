@@ -2,11 +2,11 @@ import { useState } from "react";
 import AddFriend from "./AddFriend";
 import SplitBill from "./Split-Bill";
 
-const FriendList = ({ Friends, SetFriend }) => {
+const FriendList = ({ Friends, SetFriend, SetNewFriendArray }) => {
   console.log(Friends);
   const [addFriend, setAddFriend] = useState(false);
 
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState();
 
   const handleAddFriend = () => {
     setAddFriend(true);
@@ -27,8 +27,15 @@ const FriendList = ({ Friends, SetFriend }) => {
             <div className="nameBalance">
               <p>{fr.name}</p>
               <p
+                // className={`balance ${
+                //   fr.balance >= 0 ? "positive" : "negative"
+                // }`}
                 className={`balance ${
-                  fr.balance >= 0 ? "positive" : "negative"
+                  fr.balance > 0
+                    ? "positive"
+                    : fr.balance === 0
+                    ? "even"
+                    : "negative"
                 }`}
               >
                 {fr.balance < 0
@@ -56,7 +63,13 @@ const FriendList = ({ Friends, SetFriend }) => {
           <button onClick={handleCloseButton}>Close</button>
         </div>
       )}
-      <SplitBill Selected={selected} SETSELECTED={setSelected} />
+      <SplitBill
+        Selected={selected}
+        SETSELECTED={setSelected}
+        Friends={Friends}
+        //SetFriend={SetFriend}
+        SetNewFriendArray={SetNewFriendArray}
+      />
     </>
   );
 };
