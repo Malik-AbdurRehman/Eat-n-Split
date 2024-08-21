@@ -1,0 +1,80 @@
+.friendListElements {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid;
+  margin: 10px;
+  width: 90%;
+  align-items: center;
+  gap: 15px;
+  border-radius: 10px;
+  height: 100%;
+  padding: 5px;
+}
+.nameBalance {
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+}
+.nameBalance p {
+  margin: 0px;
+}
+.profileImage {
+  border-radius: 50%;
+  border: 1px solid;
+  height: 40px;
+  width: 40px;
+}
+.fullContainer {
+  display: flex;
+  padding: 10px;
+  margin: 10px;
+  gap: 900px;
+}
+.friendList {
+  border: 1px solid red;
+  width: 100%;
+}
+.selectButton {
+  background-color: orange;
+  font-weight: bold;
+  border: none;
+  border-radius: 30px;
+  padding: 5px;
+}
+.selectButton:hover {
+  cursor: pointer;
+}
+.addFriend {
+}
+.division {
+  display: flex;
+  flex-direction: row;
+}
+.splitInput {
+  display: flex;
+  flex-direction: row;
+}
+.splitInput p {
+  flex: 2;
+}
+.splitInput input {
+  flex: 1;
+}
+.splitbill {
+  display: flex;
+  gap: 100px;
+  padding-left: 100px;
+}
+.positive {
+  color: green;
+}
+.negative {
+  color: red;
+}
+.splitInput p {
+  margin: 2px;
+}
+.splitInput input {
+  margin-bottom: 10px;
+  padding: 3px;
+}
